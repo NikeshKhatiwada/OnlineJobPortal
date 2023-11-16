@@ -341,7 +341,7 @@ class AgencyController {
                 }
                 ++$i;
             }
-            if($agencyImageSize != 0 && $agencyImageSize >= 10485760) {
+            if($agencyImageSize >= 10485760) {
                 echo("Image size should be less than 10 MB.");
                 return;
             }

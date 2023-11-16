@@ -246,7 +246,7 @@ class CandidateController {
                 echo("Both passwords are not same.");
                 return;
             }
-            if($candidateImageSize != 0 && $candidateImageSize >= 10485760) {
+            if($candidateImageSize >= 10485760) {
                 echo("Image size should be less than 10 MB.");
                 return;
             }
@@ -400,7 +400,7 @@ class CandidateController {
                 }
                 ++$i;
             }
-            if($candidateImageSize != 0 && $candidateImageSize >= 10485760) {
+            if($candidateImageSize >= 10485760) {
                 echo("Image size should be less than 10 MB.");
                 return;
             }
