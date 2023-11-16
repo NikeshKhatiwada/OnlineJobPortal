@@ -255,30 +255,30 @@ class CandidateController {
             while ($i < count($candidateEmail)) {
                 if($candidateEmail[$i] != null && $candidateEmail[$i] != "") {
                     $temp = $this->checkCandidateEmail($candidateEmail[$i]);
-                    if ($temp == true) {
+                    if ($temp) {
                         echo($candidateEmail[$i]. " has been already used by another candidate.\n");
-                        if($emailAlreadyUsed == false)
+                        if(!$emailAlreadyUsed)
                             $emailAlreadyUsed = true;
                     }
                 }
                 ++$i;
             }
-            if($emailAlreadyUsed == true)
+            if($emailAlreadyUsed)
                 return;
             $phoneAlreadyUsed = false;
             $i = 0;
             while ($i < count($candidatePhone)) {
                 if($candidatePhone[$i] != null && $candidatePhone[$i] != "") {
                     $temp = $this->checkCandidatePhone($candidatePhone[$i]);
-                    if ($temp == true) {
+                    if ($temp) {
                         echo($candidatePhone[$i]. " has been already used by another candidate.\n");
-                        if($phoneAlreadyUsed == false)
+                        if(!$phoneAlreadyUsed)
                             $phoneAlreadyUsed = true;
                     }
                 }
                 ++$i;
             }
-            if($phoneAlreadyUsed == true)
+            if($phoneAlreadyUsed)
                 return;
             $candidateInsertionResult = $this->insertCandidate($candidateName, $candidateMunicipality, $candidateDistrict, $candidateDateOfBirth, $candidateGender, $candidatePassword1, $candidateEduLevel);
             $candidateImageInsertionResult = true;
@@ -286,20 +286,20 @@ class CandidateController {
             $candidatePhoneInsertionResult = true;
             $candidateExperienceInsertionResult = true;
             $candidateSkillInsertionResult = true;
-            if($candidateInsertionResult == true) {
+            if($candidateInsertionResult) {
                 $candidateId = $this->selectInsertedCandidateId();
                 if($candidateImageName != "") {
                     move_uploaded_file($candidateImageTmp, "/JobPortal/Images/Candidates/". $candidateImageName);
-                    if(rename("/JobPortal/Images/Candidates/". $candidateImageName, "/JobPortal/Images/Candidates/". $candidateId. ".". $candidateImageExtension) == false)
+                    if(!rename("/JobPortal/Images/Candidates/" . $candidateImageName, "/JobPortal/Images/Candidates/" . $candidateId . "." . $candidateImageExtension))
                         $candidateImageInsertionResult = false;
-                    if($this->insertCandidateImage($candidateId, "/Images/Candidates/". $candidateId. ".". $candidateImageExtension) == false)
+                    if(!$this->insertCandidateImage($candidateId, "/Images/Candidates/" . $candidateId . "." . $candidateImageExtension))
                         $candidateImageInsertionResult = false;
                 }
                 $i = 0;
                 while ($i < count($candidateEmail)) {
                     if($candidateEmail[$i] != null && $candidateEmail[$i] != "") {
                         $temp = $this->insertCandidateEmail($candidateId, $candidateEmail[$i]);
-                        if($candidateEmailInsertionResult == true)
+                        if($candidateEmailInsertionResult)
                             $candidateEmailInsertionResult = $temp;
                     }
                     ++$i;
@@ -308,7 +308,7 @@ class CandidateController {
                 while ($i < count($candidatePhone)) {
                     if($candidatePhone[$i] != null && $candidatePhone[$i] != "") {
                         $temp = $this->insertCandidatePhone($candidateId, $candidatePhone[$i]);
-                        if($candidatePhoneInsertionResult == true)
+                        if($candidatePhoneInsertionResult)
                             $candidatePhoneInsertionResult = $temp;
                     }
                     ++$i;
@@ -317,7 +317,7 @@ class CandidateController {
                 while ($i < count($candidateExperience) && $i < count($candidateExperienceYear)) {
                     if($candidateExperience[$i] != null && $candidateExperience[$i] != "" && $candidateExperienceYear[$i] != null && $candidateExperienceYear[$i] != "") {
                         $temp = $this->insertCandidateExperience($candidateId, $candidateExperience[$i], $candidateExperienceYear[$i]);
-                        if($candidateExperienceInsertionResult == true)
+                        if($candidateExperienceInsertionResult)
                             $candidateExperienceInsertionResult = $temp;
                     }
                     ++$i;
@@ -326,7 +326,7 @@ class CandidateController {
                 while ($i < count($candidateSkill)) {
                     if($candidateSkill[$i] != null && $candidateSkill[$i] != "") {
                         $temp = $this->insertCandidateSkill($candidateId, $candidateSkill[$i]);
-                        if ($candidateSkillInsertionResult == true)
+                        if ($candidateSkillInsertionResult)
                             $candidateSkillInsertionResult = $temp;
                     }
                     ++$i;
@@ -407,20 +407,20 @@ class CandidateController {
             $candidateImageInsertionResult = true;
             if($candidateImageName != "") {
                 move_uploaded_file($candidateImageTmp, "/JobPortal/Images/Candidates/". $candidateImageName);
-                if(rename("/JobPortal/Images/Candidates/". $candidateImageName, "/JobPortal/Images/Candidates/". $candidateId. ".". $candidateImageExtension) == false)
+                if(!rename("/JobPortal/Images/Candidates/" . $candidateImageName, "/JobPortal/Images/Candidates/" . $candidateId . "." . $candidateImageExtension))
                     $candidateImageInsertionResult = false;
-                if($this->insertCandidateImage($candidateId, "/Images/Candidates/". $candidateId. ".". $candidateImageExtension) == false)
+                if(!$this->insertCandidateImage($candidateId, "/Images/Candidates/" . $candidateId . "." . $candidateImageExtension))
                     $candidateImageInsertionResult = false;
             }
             $candidateUpdateResult = $this->updateCandidate($candidateId, $candidateName, $candidateMunicipality, $candidateDistrict, $candidateDateOfBirth, $candidateGender, $candidateEduLevel);
             $this->deleteCandidateEmail($candidateId);
             $candidateEmailInsertionResult = true;
-            if($candidateUpdateResult == true) {
+            if($candidateUpdateResult) {
                 $i = 0;
                 while ($i < count($candidateEmail)) {
                     if($candidateEmail[$i] != null && $candidateEmail[$i] != "") {
                         $temp = $this->insertCandidateEmail($candidateId, $candidateEmail[$i]);
-                        if ($candidateEmailInsertionResult == true)
+                        if ($candidateEmailInsertionResult)
                             $candidateEmailInsertionResult = $temp;
                     }
                     ++$i;
@@ -428,12 +428,12 @@ class CandidateController {
             }
             $this->deleteCandidatePhone($candidateId);
             $candidatePhoneInsertionResult = true;
-            if($candidateUpdateResult == true) {
+            if($candidateUpdateResult) {
                 $i = 0;
                 while ($i < count($candidatePhone)) {
                     if($candidatePhone[$i] != null && $candidatePhone[$i] != "") {
                         $temp = $this->insertCandidatePhone($candidateId, $candidatePhone[$i]);
-                        if ($candidatePhoneInsertionResult == true)
+                        if ($candidatePhoneInsertionResult)
                             $candidatePhoneInsertionResult = $temp;
                     }
                     ++$i;
@@ -441,12 +441,12 @@ class CandidateController {
             }
             $this->deleteCandidateExp($candidateId);
             $candidateExperienceInsertionResult = true;
-            if($candidateUpdateResult == true) {
+            if($candidateUpdateResult) {
                 $i = 0;
                 while ($i < count($candidateExperience) && $i < count($candidateExperienceYear)) {
                     if($candidateExperience[$i] != null && $candidateExperience[$i] != "" && $candidateExperienceYear[$i] != null && $candidateExperienceYear[$i] != "") {
                         $temp = $this->insertCandidateExperience($candidateId, $candidateExperience[$i], $candidateExperienceYear[$i]);
-                        if ($candidateExperienceInsertionResult == true)
+                        if ($candidateExperienceInsertionResult)
                             $candidateExperienceInsertionResult = $temp;
                     }
                     ++$i;
@@ -454,12 +454,12 @@ class CandidateController {
             }
             $this->deleteCandidateSkill($candidateId);
             $candidateSkillInsertionResult = true;
-            if($candidateUpdateResult == true) {
+            if($candidateUpdateResult) {
                 $i = 0;
                 while ($i < count($candidateSkill)) {
                     if($candidateSkill[$i] != null && $candidateSkill[$i] != "") {
                         $temp = $this->insertCandidateSkill($candidateId, $candidateSkill[$i]);
-                        if ($candidateSkillInsertionResult == true)
+                        if ($candidateSkillInsertionResult)
                             $candidateSkillInsertionResult = $temp;
                     }
                     ++$i;

@@ -299,7 +299,7 @@ require_once '/JobPortal/Views/Shared/Menu.php';
                                             name='candidate-phone". ($i + 1). "'
                                             value='". $this->candidatePhone[$i]. "'
                                             placeholder='Phone ". ($i + 1). "'>
-                                    </li>";;
+                                    </li>";
                                 ++$i;
                             }
                             ?>

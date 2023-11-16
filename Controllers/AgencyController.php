@@ -219,50 +219,50 @@ class AgencyController {
             while ($i < count($agencyEmail)) {
                 if($agencyEmail[$i] != null && $agencyEmail[$i] != "") {
                     $temp = $this->checkAgencyEmail($agencyEmail[$i]);
-                    if($temp == true) {
+                    if($temp) {
                         echo($agencyEmail[$i]. " has been already used by another agency.\n");
-                        if($emailAlreadyUsed == false)
+                        if(!$emailAlreadyUsed)
                             $emailAlreadyUsed = true;
                     }
                 }
                 ++$i;
             }
-            if($emailAlreadyUsed == true)
+            if($emailAlreadyUsed)
                 return;
             $phoneAlreadyUsed = false;
             $i = 0;
             while ($i < count($agencyPhone)) {
                 if($agencyPhone[$i] != null && $agencyPhone[$i] != "") {
                     $temp = $this->checkAgencyPhone($agencyPhone[$i]);
-                    if($temp == true) {
+                    if($temp) {
                         echo($agencyPhone[$i]. " has been already used by another agency.\n");
-                        if($phoneAlreadyUsed == false)
+                        if(!$phoneAlreadyUsed)
                             $phoneAlreadyUsed = true;
                     }
                 }
                 ++$i;
             }
-            if($phoneAlreadyUsed == true)
+            if($phoneAlreadyUsed)
                 return;
             $agencyInsertionResult = $this->insertAgency($agencyName, $agencyCity, $agencyDistrict, $agencyDateOfEstablishment, $agencyPassword1, $agencyDescription);
             $agencyImageInsertionResult = true;
             $agencyEmailInsertionResult = true;
             $agencyPhoneInsertionResult = true;
             $agencyTypeInsertionResult = true;
-            if($agencyInsertionResult == true) {
+            if($agencyInsertionResult) {
                 $agencyId = $this->selectInsertedAgencyId();
                 if($agencyImageName != "") {
                     move_uploaded_file($agencyImageTmp, "/JobPortal/Images/Agencies/". $agencyImageName);
-                    if(rename("/JobPortal/Images/Agencies/". $agencyImageName, "/JobPortal/Images/Agencies/". $agencyId. ".". $agencyImageExtension) == false)
+                    if(!rename("/JobPortal/Images/Agencies/" . $agencyImageName, "/JobPortal/Images/Agencies/" . $agencyId . "." . $agencyImageExtension))
                         $agencyImageInsertionResult = false;
-                    if($this->insertAgencyImage($agencyId, "/Images/Agencies/". $agencyId. ".". $agencyImageExtension) == false)
+                    if(!$this->insertAgencyImage($agencyId, "/Images/Agencies/" . $agencyId . "." . $agencyImageExtension))
                         $agencyImageInsertionResult = false;
                 }
                 $i = 0;
                 while ($i < count($agencyEmail)) {
                     if($agencyEmail[$i] != null && $agencyEmail[$i] != "") {
                         $temp = $this->insertAgencyEmail($agencyId, $agencyEmail[$i]);
-                        if($agencyEmailInsertionResult == true)
+                        if($agencyEmailInsertionResult)
                             $agencyEmailInsertionResult = $temp;
                     }
                     ++$i;
@@ -271,7 +271,7 @@ class AgencyController {
                 while ($i < count($agencyPhone)) {
                     if($agencyPhone[$i] != null && $agencyPhone[$i] != "") {
                         $temp = $this->insertAgencyPhone($agencyId, $agencyPhone[$i]);
-                        if($agencyPhoneInsertionResult == true)
+                        if($agencyPhoneInsertionResult)
                             $agencyPhoneInsertionResult = $temp;
                     }
                     ++$i;
@@ -280,7 +280,7 @@ class AgencyController {
                 while ($i < count($agencyType)) {
                     if($agencyType[$i] != null && $agencyType[$i] != "") {
                         $temp = $this->insertAgencyType($agencyId, $agencyType[$i]);
-                        if($agencyTypeInsertionResult == true)
+                        if($agencyTypeInsertionResult)
                             $agencyTypeInsertionResult = $temp;
                     }
                     ++$i;
@@ -348,20 +348,20 @@ class AgencyController {
             $agencyImageInsertionResult = true;
             if($agencyImageName != "") {
                 move_uploaded_file($agencyImageTmp, "/JobPortal/Images/Agencies/". $agencyImageName);
-                if(rename("/JobPortal/Images/Agencies/". $agencyImageName, "/JobPortal/Images/Agencies/". $agencyId. ".". $agencyImageExtension) == false)
+                if(!rename("/JobPortal/Images/Agencies/" . $agencyImageName, "/JobPortal/Images/Agencies/" . $agencyId . "." . $agencyImageExtension))
                     $agencyImageInsertionResult = false;
-                if($this->insertAgencyImage($agencyId, "/Images/Agencies/". $agencyId. ".". $agencyImageExtension) == false)
+                if(!$this->insertAgencyImage($agencyId, "/Images/Agencies/" . $agencyId . "." . $agencyImageExtension))
                     $agencyImageInsertionResult = false;
             }
             $agencyUpdateResult = $this->updateAgency($agencyId, $agencyName, $agencyCity, $agencyDistrict, $agencyDateOfEstablishment, $agencyDescription);
             $this->deleteAgencyEmail($agencyId);
             $agencyEmailInsertionResult = true;
-            if($agencyUpdateResult == true) {
+            if($agencyUpdateResult) {
                 $i = 0;
                 while ($i < count($agencyEmail)) {
                     if($agencyEmail[$i] != null && $agencyEmail[$i] != "") {
                         $temp = $this->insertAgencyEmail($agencyId, $agencyEmail[$i]);
-                        if ($agencyEmailInsertionResult == true)
+                        if ($agencyEmailInsertionResult)
                             $agencyEmailInsertionResult = $temp;
                     }
                     ++$i;
@@ -369,12 +369,12 @@ class AgencyController {
             }
             $this->deleteAgencyPhone($agencyId);
             $agencyPhoneInsertionResult = true;
-            if($agencyUpdateResult == true) {
+            if($agencyUpdateResult) {
                 $i = 0;
                 while ($i < count($agencyPhone)) {
                     if($agencyPhone[$i] != null && $agencyPhone[$i] != "") {
                         $temp = $this->insertAgencyPhone($agencyId, $agencyPhone[$i]);
-                        if ($agencyPhoneInsertionResult == true)
+                        if ($agencyPhoneInsertionResult)
                             $agencyPhoneInsertionResult = $temp;
                     }
                     ++$i;
@@ -382,12 +382,12 @@ class AgencyController {
             }
             $this->deleteAgencyType($agencyId);
             $agencyTypeInsertionResult = true;
-            if($agencyUpdateResult == true) {
+            if($agencyUpdateResult) {
                 $i = 0;
                 while ($i < count($agencyType)) {
                     if($agencyType[$i] != null && $agencyType[$i] != "") {
                         $temp = $this->insertAgencyType($agencyId, $agencyType[$i]);
-                        if ($agencyTypeInsertionResult == true)
+                        if ($agencyTypeInsertionResult)
                             $agencyTypeInsertionResult = $temp;
                     }
                     ++$i;
@@ -448,13 +448,13 @@ class AgencyController {
             $agencyId = $_SESSION["user_id"];
             $jobInsertionResult = $this->jobController->insertJob($jobName, $jobCity, $jobDistrict, $jobDeadline, $jobSalary, $jobType, $jobDescription, $jobEduLevel, $jobExperienceYear, $agencyId);
             $jobSkillInsertionResult = true;
-            if($jobInsertionResult == true) {
+            if($jobInsertionResult) {
                 $i = 0;
                 $jobId = $this->jobController->selectInsertedJobId();
                 while ($i < count($jobSkill)) {
                     if($jobSkill[$i] != null && $jobSkill[$i] != "") {
                         $temp = $this->jobController->insertJobSkill($jobId, $jobSkill[$i]);
-                        if ($jobSkillInsertionResult == true)
+                        if ($jobSkillInsertionResult)
                             $jobSkillInsertionResult = $temp;
                     }
                     ++$i;
@@ -497,12 +497,12 @@ class AgencyController {
             $jobUpdateResult = $this->jobController->updateJob($jobId, $jobName, $jobCity, $jobDistrict, $jobDeadline, $jobSalary, $jobType, $jobDescription, $jobEduLevel, $jobExperienceYear);
             $this->jobController->deleteJobSkill($jobId);
             $jobSkillInsertionResult = true;
-            if($jobUpdateResult == true) {
+            if($jobUpdateResult) {
                 $i = 0;
                 while ($i < count($jobSkill)) {
                     if($jobSkill[$i] != null && $jobSkill[$i] != "") {
                         $temp = $this->jobController->insertJobSkill($jobId, $jobSkill[$i]);
-                        if ($jobSkillInsertionResult == true)
+                        if ($jobSkillInsertionResult)
                             $jobSkillInsertionResult = $temp;
                     }
                     ++$i;
