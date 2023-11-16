@@ -1,4 +1,17 @@
 <?php
+
+function generateDistrictOptions($districtArray, $selectedDistrict)
+{
+    $i = 0;
+    while ($i < count($districtArray)) {
+        if ($districtArray[$i] == $selectedDistrict)
+            echo "<option value='" . $districtArray[$i] . "' selected>" . $districtArray[$i] . "</option>";
+        else
+            echo "<option value='" . $districtArray[$i] . "'>" . $districtArray[$i] . "</option>";
+        ++$i;
+    }
+}
+
 require_once '/JobPortal/Views/Shared/Menu.php';
 ?>
 <!DOCTYPE html>
@@ -169,28 +182,14 @@ require_once '/JobPortal/Views/Shared/Menu.php';
                                                 $candidateDistrict = ["Bhojpur", "Dhankuta", "Ilam", "Jhapa", "Khotang",
                                                     "Morang", "Okhaldhunga", "Panchthar", "Sankhuwasabha", "Solukhumbu",
                                                     "Sunsari", "Taplejung", "Tehrathum", "Udayapur"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                             <optgroup class="form-label" label="Province 2">
                                                 <?php
                                                 $candidateDistrict = ["Parsa", "Bara", "Rautahat", "Sarlahi", "Dhanusha",
                                                     "Siraha", "Mahottari", "Saptari"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                             <optgroup class="form-label" label="Province 3">
@@ -198,14 +197,7 @@ require_once '/JobPortal/Views/Shared/Menu.php';
                                                 $candidateDistrict = ["Sindhuli", "Ramechhap", "Dolakha", "Bhaktapur", "Dhading",
                                                     "Kathmandu", "Kavrepalanchok", "Lalitpur", "Nuwakot", "Rasuwa",
                                                     "Sindhupalchok", "Chitwan", "Makwanpur"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                             <optgroup class="form-label" label="Province 4">
@@ -213,14 +205,7 @@ require_once '/JobPortal/Views/Shared/Menu.php';
                                                 $candidateDistrict = ["Baglung", "Gorkha", "Kaski", "Lamjung", "Manang",
                                                     "Mustang", "Myagdi", "Nawalpur", "Parbat", "Syangja",
                                                     "Tanahun"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                             <optgroup class="form-label" label="Province 5">
@@ -228,42 +213,21 @@ require_once '/JobPortal/Views/Shared/Menu.php';
                                                 $candidateDistrict = ["Kapilvastu", "Parasi", "Rupandehi", "Arghakhanchi", "Gulmi",
                                                     "Palpa", "Dang", "Pyuthan", "Rolpa", "East Rukum",
                                                     "Banke", "Bardiya"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                             <optgroup class="form-label" label="Province 6">
                                                 <?php
                                                 $candidateDistrict = ["West Rukum", "Salyan", "Dolpa", "Humla", "Jumla",
                                                     "Kalikot", "Mugu", "Surkhet", "Dailekh", "Jajarkot"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                             <optgroup class="form-label" label="Province 7">
                                                 <?php
                                                 $candidateDistrict = ["Kailali", "Achham", "Doti", "Bajhang", "Bajura",
                                                     "Kanchanpur", "Dadeldhura", "Baitadi", "Darchula"];
-                                                $i = 0;
-                                                while ($i < count($candidateDistrict)) {
-                                                    if($candidateDistrict[$i] == $this->candidateInfo["cDistrict"])
-                                                        echo "<option value='". $candidateDistrict[$i]. "' selected>". $candidateDistrict[$i]. "</option>";
-                                                    else
-                                                        echo "<option value='". $candidateDistrict[$i]. "'>". $candidateDistrict. "</option>";
-                                                    ++$i;
-                                                }
+                                                generateDistrictOptions($candidateDistrict, $this->candidateInfo["cDistrict"]);
                                                 ?>
                                             </optgroup>
                                     </select>
