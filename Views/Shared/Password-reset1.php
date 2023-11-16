@@ -21,7 +21,7 @@
                         <form class="my-login-validation" action="Login/CheckLogin" method="post">
                             <h4 class="card-title">
                                 Password Reset
-                                <select id="user" class="form-select" name="user">
+                                <select aria-label="userType" id="user" class="form-select" name="user">
                                     <option value="agency">Agency</option>
                                     <option value="candidate">Candidate</option>
                                 </select>
