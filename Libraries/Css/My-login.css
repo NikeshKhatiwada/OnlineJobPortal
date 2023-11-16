@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+}
+body.my-login-page {
+    background-image: url("/Images/FloralPattern.png");
+    font-size: 1.125rem;
+}
+.my-login-page .brand {
+    width: 5.625rem;
+    height: 5.625rem;
+    overflow: hidden;
+    border-radius: 60%;
+    margin: 2.5rem auto;
+    position: relative;
+    z-index: 1;
+}
+.my-login-page .brand img {
+    width: 100%;
+}
+.my-login-page .card-wrapper {
+    width: 30rem;
+}
+.my-login-page .card .fat {
+    padding: 0.625rem;
+}
+.my-login-page .card .card-title {
+    margin-bottom: 36px;
+}
+.my-login-page .form-control {
+    border-width: 0.25rem;
+}
+.my-login-page .form-group label {
+    width: 7.5rem;
+}
+.my-login-page .btn.btn-block {
+    padding: 0.5rem 1.8rem;
+    margin-top: 1.375rem;
+}
+.my-login-page a {
+    text-decoration-line: none;
+}
+.my-login-page .register-agency {
+    display: none;
+}
+.my-login-page .register-candidate {
+    display: none;
+}
+.tab {
+    display: none;
+}

@@ -1,0 +1,11 @@
+html, body {
+    height: 100%;
+}
+.about-section {
+    background-image: url("/Images/AbstractArchitecture.jpg");
+    background-size: contain;
+    font-size: 1.125rem;
+}
+.about-section .brand img {
+    width: 5rem;
+}

@@ -1,0 +1,6 @@
+.navbar {
+    max-height: 6rem;
+}
+.navbar.img-fluid {
+    max-height: 2.5rem;
+}

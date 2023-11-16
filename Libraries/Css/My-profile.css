@@ -1,0 +1,42 @@
+.candidate-password {
+    width: 18rem;
+}
+.agency-password {
+    width: 18rem;
+}
+.candidate-skill {
+    width: 18rem;
+}
+.add-candidate-skill {
+    margin-left: 1.9rem;
+}
+.agency-type {
+    width: 21rem;
+}
+.add-agency-type {
+    margin-left: 1.9rem;
+}
+.candidate-experience-year {
+    width: 5rem;
+}
+.candidate-experience {
+    width: 18rem;
+}
+.add-candidate-experience {
+    margin-left: 1.9rem;
+}
+.candidate-gender {
+    width: 10.75rem;
+}
+.candidate-district {
+    width: 10.75rem;
+}
+.agency-district {
+    width: 10.75rem;
+}
+.candidate-dob {
+    width: 10.75rem;
+}
+.agency-doe {
+    width: 10.75rem;
+}
