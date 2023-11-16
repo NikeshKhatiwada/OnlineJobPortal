@@ -2,14 +2,17 @@
 session_start();
 $url = "";
 if(empty($_GET["url"])) {
-    if($_SESSION["user_id"] !== null) {
+    if (isset($_SESSION["user_id"], $_SESSION["user_type"])) {
         if($_SESSION["user_type"] == "agency")
             $url = "Agency/Home";
         elseif($_SESSION["user_type"] == "candidate")
             $url = "Candidate/Home";
+        else
+            $url = "Login/Login";
     }
-    else
+    else {
         $url = "Login/Login";
+    }
 }
 else
     $url = $_GET["url"];
